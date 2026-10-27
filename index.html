@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopfy — Pastel Music Experience</title>
+  <!-- Google Fonts & RemixIcons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Ambient Animated Pastel Background -->
+  <div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand">
+        <i class="ri-pulse-fill brand-icon"></i>
+        <span class="brand-name">stopfy</span>
+      </div>
+      <span class="badge">Pastel Edition</span>
+    </div>
+
+    <!-- Search Bar & Vibe Prompt -->
+    <div class="search-container">
+      <i class="ri-search-2-line search-icon"></i>
+      <input type="text" id="searchInput" placeholder="Buscar artista, canción, o describe tu mood (ej: reggaeton para bailar, chill latino)...">
+      <button class="ai-prompt-btn" id="aiPromptBtn" title="Filtro Inteligente de Vibe">
+        <i class="ri-sparkles-line"></i> <span>Vibe AI</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <button class="icon-btn" id="eqToggleHeaderBtn" title="Abrir Ecualizador">
+        <i class="ri-equalizer-line"></i>
+      </button>
+      <div class="user-avatar">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Usuario">
+      </div>
+    </div>
+  </header>
+
+  <main class="main-layout">
+    <!-- Hero Banner -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <span class="hero-tag">Novedades & Tendencias</span>
+        <h1 class="hero-title">El Sonido Urbano y Caribeño en un Solo Lugar</h1>
+        <p class="hero-desc">Explora los últimos éxitos de Rawayana, Bad Bunny, Rauw Alejandro, Quevedo, Blessd y más con audio envolvente y ecualizador pastel.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="heroPlayBtn">
+            <i class="ri-play-fill"></i> Reproducir Mix
+          </button>
+          <button class="btn btn-glass" id="heroExploreBtn">
+            <i class="ri-disc-line"></i> Explorar Álbumes
+          </button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-glow"></div>
+        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Cover Destacado" class="hero-cover">
+      </div>
+    </section>
+
+    <!-- Main Grid Content -->
+    <div class="content-grid">
+      <!-- Left Column: Music Catalog -->
+      <section class="catalog-section">
+
+        <!-- Navigation Tabs -->
+        <div class="catalog-tabs">
+          <button class="tab-btn active" data-tab="all">Todas las Canciones</button>
+          <button class="tab-btn" data-tab="albums">Álbumes</button>
+          <button class="tab-btn" data-tab="artists">Artistas</button>
+        </div>
+
+        <!-- Songs View -->
+        <div class="view-panel active" id="viewSongs">
+          <div class="songs-list" id="songsList">
+            <!-- Renderizado dinámicamente con JS -->
+          </div>
+        </div>
+
+        <!-- Albums View -->
+        <div class="view-panel" id="viewAlbums">
+          <div class="albums-grid" id="albumsGrid">
+            <!-- Renderizado dinámicamente con JS -->
+          </div>
+        </div>
+
+        <!-- Artists View -->
+        <div class="view-panel" id="viewArtists">
+          <div class="artists-grid" id="artistsGrid">
+            <!-- Renderizado dinámicamente con JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Equalizer & Visualizer Card -->
+      <aside class="side-panel">
+        <div class="eq-card">
+          <div class="eq-header">
+            <h3><i class="ri-equalizer-fill"></i> Ecualizador 5 Bandas</h3>
+            <label class="switch">
+              <input type="checkbox" id="eqToggleSwitch" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <!-- Presets -->
+          <div class="eq-presets">
+            <button class="preset-chip active" data-preset="flat">Plano</button>
+            <button class="preset-chip" data-preset="bass">Bass Boost</button>
+            <button class="preset-chip" data-preset="reggaeton">Reggaeton</button>
+            <button class="preset-chip" data-preset="chill">Pastel Chill</button>
+            <button class="preset-chip" data-preset="vocal">Voces</button>
+          </div>
+
+          <!-- Slider Controls -->
+          <div class="eq-sliders">
+            <div class="eq-band">
+              <input type="range" class="eq-slider" data-band="0" min="-12" max="12" value="0" orient="vertical">
+              <span class="band-label">60Hz</span>
+              <span class="band-val" id="val-0">0dB</span>
+            </div>
+            <div class="eq-band">
+              <input type="range" class="eq-slider" data-band="1" min="-12" max="12" value="0" orient="vertical">
+              <span class="band-label">230Hz</span>
+              <span class="band-val" id="val-1">0dB</span>
+            </div>
+            <div class="eq-band">
+              <input type="range" class="eq-slider" data-band="2" min="-12" max="12" value="0" orient="vertical">
+              <span class="band-label">910Hz</span>
+              <span class="band-val" id="val-2">0dB</span>
+            </div>
+            <div class="eq-band">
+              <input type="range" class="eq-slider" data-band="3" min="-12" max="12" value="0" orient="vertical">
+              <span class="band-label">4kHz</span>
+              <span class="band-val" id="val-3">0dB</span>
+            </div>
+            <div class="eq-band">
+              <input type="range" class="eq-slider" data-band="4" min="-12" max="12" value="0" orient="vertical">
+              <span class="band-label">14kHz</span>
+              <span class="band-val" id="val-4">0dB</span>
+            </div>
+          </div>
+
+          <!-- Spectrum Canvas -->
+          <div class="visualizer-container">
+            <canvas id="visualizerCanvas"></canvas>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Player Bar -->
+  <footer class="player-bar">
+    <!-- Song Info -->
+    <div class="player-track-info">
+      <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=150&q=80" alt="Album Art" id="playerCover" class="player-cover">
+      <div class="track-text">
+        <h4 id="playerTitle">Selecciona una canción</h4>
+        <p id="playerArtist">Stopfy Audio Engine</p>
+      </div>
+      <button class="like-btn" id="likeBtn"><i class="ri-heart-line"></i></button>
+    </div>
+
+    <!-- Central Controls & Progress Bar -->
+    <div class="player-central-controls">
+      <div class="control-buttons">
+        <button class="ctrl-btn" id="shuffleBtn" title="Modo Aleatorio"><i class="ri-shuffle-line"></i></button>
+        <button class="ctrl-btn" id="prevBtn" title="Anterior"><i class="ri-skip-back-fill"></i></button>
+        <button class="ctrl-btn play-main-btn" id="playPauseBtn" title="Reproducir / Pausar"><i class="ri-play-fill"></i></button>
+        <button class="ctrl-btn" id="nextBtn" title="Siguiente"><i class="ri-skip-forward-fill"></i></button>
+        <button class="ctrl-btn" id="repeatBtn" title="Modo Repetición"><i class="ri-repeat-line"></i></button>
+      </div>
+      <div class="progress-container">
+        <span class="time-label" id="currentTime">0:00</span>
+        <div class="progress-bar-wrap" id="progressWrap">
+          <div class="progress-bar
